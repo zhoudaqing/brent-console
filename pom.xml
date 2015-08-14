@@ -5,6 +5,11 @@
 	<artifactId>brent-console</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	
+	<modules>
+		<module>brent-console-webapp</module>
+		<module>brent-console-common</module>
+	</modules>
 
 	<properties>
 		<slf4j.version>1.7.6</slf4j.version>
@@ -140,9 +145,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<modules>
-		<module>brent-console-webapp</module>
-		<module>brent-console-common</module>
-		<module>brent-console-node</module>
-	</modules>
+	
 </project>
