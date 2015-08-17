@@ -5,6 +5,8 @@ import com.jfinal.plugin.activerecord.Page;
 
 public class SysUser extends Model<SysUser> {
 	
+	public static String UserName="UserName";
+	
     public static final SysUser me = new SysUser();
 
     // ---------- 后台查询方法 -------

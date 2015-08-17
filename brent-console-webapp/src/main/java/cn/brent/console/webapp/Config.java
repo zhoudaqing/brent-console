@@ -16,10 +16,10 @@ import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.ext.handler.ContextPathHandler;
-import com.jfinal.ext.interceptor.SessionInViewInterceptor;
 import com.jfinal.ext.plugin.shiro.ShiroInterceptor;
 import com.jfinal.ext.plugin.shiro.ShiroPlugin;
 import com.jfinal.ext.plugin.sqlinxml.SqlInXmlPlugin;
+import com.jfinal.ext.route.AutoBindRoutes;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
@@ -46,14 +46,16 @@ public class Config extends JFinalConfig {
 		me.setErrorRenderFactory(new IErrorRenderFactory() {
 			@Override
 			public Render getRender(int errorCode, String view) {
-				if (errorCode == 401 || errorCode == 403) {
-					return new JsonRender(JsonReturn.fail(errorCode + "","没有权限。"));
+				if (errorCode == 401 ) {
+					return new JsonRender(JsonReturn.fail(errorCode,"没有登录"));
+				} else if (errorCode == 403) {
+					return new JsonRender(JsonReturn.fail(errorCode,"没有权限。"));
 				} else if (errorCode == 404) {
-					return new JsonRender(JsonReturn.fail(errorCode + "","URL不存在。"));
+					return new JsonRender(JsonReturn.fail(errorCode,"URL不存在。"));
 				} else if (errorCode == 500) {
-					return new JsonRender(JsonReturn.fail(errorCode + "","系统异常，请联系管理员。"));
+					return new JsonRender(JsonReturn.fail(errorCode,"系统异常，请联系管理员。"));
 				} else {
-					return new JsonRender(JsonReturn.fail(errorCode + "","未知异常"));
+					return new JsonRender(JsonReturn.fail(errorCode,"未知异常"));
 				}
 			}
 		});
@@ -65,6 +67,8 @@ public class Config extends JFinalConfig {
 	 */
 	public void configRoute(Routes me) {
 		routes = me;
+		Routes r=new AutoBindRoutes().suffix("Action");
+		routes.add(r);
 	}
 
 	/**
@@ -95,7 +99,7 @@ public class Config extends JFinalConfig {
 	}
 
 	private void initTable(ActiveRecordPlugin arp) {
-		arp.addMapping("sys_user", SysUser.class); // 映射表到模型
+		arp.addMapping("sys_user", SysUser.class); 
 		arp.addMapping("sys_user_role", SysUserRole.class);
 		arp.addMapping("sys_user_log", SysUserLog.class);
 		arp.addMapping("sys_site", SysSite.class);
@@ -108,7 +112,6 @@ public class Config extends JFinalConfig {
 	 * 配置全局拦截器
 	 */
 	public void configInterceptor(Interceptors me) {
-		me.add(new SessionInViewInterceptor());// 将Session对象写成request中一个属性（session）JFinalSession
 		me.add(new ShiroInterceptor());
 	}
 

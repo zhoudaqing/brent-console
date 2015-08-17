@@ -6,9 +6,29 @@ import java.util.Map;
 
 public class UID implements Serializable{
 	
+	public UID(String uid) {
+		super();
+		this.uid = uid;
+	}
+
+	private String uid;
+
+	private Map<SYS, String> ids = new HashMap<SYS, String>();
+	
+	public String getUid() {
+		return uid;
+	}
+
+	public void addSYS(SYS sys,String id){
+		ids.put(sys, id);
+	}
+
 	public enum SYS{
-		WEB("console"),//后台
-		EIP("web");//网站
+		
+		/**后台*/
+		CONSOLE("CONSOLE"),
+		/**网站*/
+		WEB("WEB");
 		
 		private String code;
 		
@@ -18,20 +38,5 @@ public class UID implements Serializable{
 		public String getCode(){
 			return this.code;
 		}
-	}
-
-	private String uid;
-
-	//该uid 对应的 各业务系统的id
-	private Map<String, String> ids = new HashMap<String, String>();
-
-	private String name;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 }

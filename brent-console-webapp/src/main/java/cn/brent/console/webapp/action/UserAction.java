@@ -1,34 +1,45 @@
 package cn.brent.console.webapp.action;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 
-import cn.brent.console.model.SysUser;
+import cn.brent.console.common.BaseController;
+import cn.brent.console.common.BizException;
 import cn.brent.toolbox.web.model.JsonReturn;
 
-import com.jfinal.core.Controller;
+public class UserAction extends BaseController {
 
-public class UserAction extends Controller {
-
-	public void getUserByNamePwd(){
-		String userName=getPara("userName");
-		String pwd=getPara("pwd");
-		if(StringUtils.isEmpty(userName)){
-			renderJson(JsonReturn.fail("userName is null."));
-			return;
-		}
-		if(StringUtils.isEmpty(pwd)){
-			renderJson(JsonReturn.fail("pwd is null."));
-			return;
-		}
+	public void login() {
 		try {
-			SysUser user = SysUser.me.findFirst("select * from sys_user where UserName=? and Password=?", userName,pwd);
-			user.set("Password", "*******");
-			renderJson(JsonReturn.ok(user));
+			String userName = getPara("userName");
+			String pwd = getPara("pwd");
+			if (StringUtils.isEmpty(userName)) {
+				throw new BizException("userName is null.");
+			}
+			if (StringUtils.isEmpty(pwd)) {
+				throw new BizException("pwd is null.");
+			}
+			SecurityUtils.getSubject().login(new UsernamePasswordToken(userName, pwd, true));
+			renderJson(JsonReturn.ok());
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("",e);
 			renderJson(JsonReturn.fail(e.getMessage()));
 			return;
 		}
 	}
+	
+	public void logout() {
+		try {
+			SecurityUtils.getSubject().logout();
+			renderJson(JsonReturn.ok());
+		} catch (Exception e) {
+			logger.error("",e);
+			renderJson(JsonReturn.fail(e.getMessage()));
+			return;
+		}
+	}
+	
+	
 
 }

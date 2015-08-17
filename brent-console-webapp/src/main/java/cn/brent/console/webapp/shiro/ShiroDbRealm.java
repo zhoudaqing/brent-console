@@ -3,6 +3,7 @@ package cn.brent.console.webapp.shiro;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -12,9 +13,12 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 
+import cn.brent.console.Constants;
+import cn.brent.console.common.model.BizUser;
 import cn.brent.console.model.SysUser;
 
 public class ShiroDbRealm extends AuthorizingRealm {
@@ -28,13 +32,14 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		try {
 			user = SysUser.me.findFirst("select * from sys_user where UserName=? and Password=?", token.getUsername(),new String(token.getPassword()));
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw new AuthenticationException(e.getMessage());
 		}
         if (user != null) {
+        	reflashBizUser(user);
+        	
             return new SimpleAuthenticationInfo(user.get("UserName"), user.get("Password"), getName());
         } else {
-            return null;
+            throw new AuthenticationException("用户名或密码错误");
         }
     }
  
@@ -45,19 +50,22 @@ public class ShiroDbRealm extends AuthorizingRealm {
         String loginName = (String) principals.fromRealm(getName()).iterator().next();
         SysUser user = SysUser.me.findFirst("select * from sys_user where UserName=?", loginName);
         if (user != null) {
+        	reflashBizUser(user);
+        	
             SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
             List<String> roles=new ArrayList<String>();
             roles.add("admin");
             info.addRoles(roles);
             
             List<String> pri=new ArrayList<String>();
-            pri.add("aaa");
+            pri.add("testPem");
             info.addStringPermissions(pri);
             return info;
         } else {
             return null;
         }
     }
+    
  
     /**
      * 更新用户授权信息缓存.
@@ -65,6 +73,17 @@ public class ShiroDbRealm extends AuthorizingRealm {
     public void clearCachedAuthorizationInfo(String principal) {
         SimplePrincipalCollection principals = new SimplePrincipalCollection(principal, getName());
         clearCachedAuthorizationInfo(principals);
+    }
+    
+    /**
+     * 刷新session中的用户信息
+     * @param user
+     */
+    protected void reflashBizUser(SysUser user){
+    	Session session = SecurityUtils.getSubject().getSession();
+    	BizUser un=new BizUser();
+    	un.setUser_name(user.getStr(SysUser.UserName));
+    	session.setAttribute(Constants.USER_SESSION, un);
     }
  
     /**
