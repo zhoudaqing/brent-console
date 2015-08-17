@@ -1,12 +1,12 @@
 package cn.brent.console.webapp;
 
-import cn.brent.console.model.SysMessage;
-import cn.brent.console.model.SysPrivilege;
-import cn.brent.console.model.SysRole;
-import cn.brent.console.model.SysSite;
-import cn.brent.console.model.SysUser;
-import cn.brent.console.model.SysUserLog;
-import cn.brent.console.model.SysUserRole;
+import cn.brent.console.webapp.model.SysMessage;
+import cn.brent.console.webapp.model.SysPrivilege;
+import cn.brent.console.webapp.model.SysRole;
+import cn.brent.console.webapp.model.SysSite;
+import cn.brent.console.webapp.model.SysUser;
+import cn.brent.console.webapp.model.SysUserLog;
+import cn.brent.console.webapp.model.SysUserRole;
 import cn.brent.toolbox.web.model.JsonReturn;
 
 import com.jfinal.config.Constants;
