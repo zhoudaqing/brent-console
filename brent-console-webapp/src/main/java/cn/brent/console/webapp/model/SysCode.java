@@ -5,28 +5,40 @@ import com.jfinal.plugin.activerecord.Model;
 
 /**
  * <p>实体类- </p>
- * <p>Table: sys_role </p>
+ * <p>Table: sys_code </p>
  *
- * @since 2015-08-18 05:00:14
+ * @since 2015-08-18 04:59:36
  */
-public class SysRole extends Model<SysRole>{
+public class SysCode extends Model<SysCode>{
 
-	public static final SysRole me = new SysRole();
-
-    /**  */
-    public static final String RoleCode = "RoleCode";
+	public static final SysCode me = new SysCode();
 
     /**  */
-    public static final String RoleName = "RoleName";
+    public static final String CodeType = "CodeType";
 
     /**  */
-    public static final String BranchInnerCode = "BranchInnerCode";
+    public static final String ParentCode = "ParentCode";
+
+    /**  */
+    public static final String CodeValue = "CodeValue";
+
+    /**  */
+    public static final String CodeName = "CodeName";
+
+    /**  */
+    public static final String CodeOrder = "CodeOrder";
 
     /**  */
     public static final String Prop1 = "Prop1";
 
     /**  */
     public static final String Prop2 = "Prop2";
+
+    /**  */
+    public static final String Prop3 = "Prop3";
+
+    /**  */
+    public static final String Prop4 = "Prop4";
 
     /**  */
     public static final String Memo = "Memo";

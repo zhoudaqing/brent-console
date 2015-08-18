@@ -37,7 +37,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         if (user != null) {
         	reflashBizUser(user);
         	
-            return new SimpleAuthenticationInfo(user.get("UserName"), user.get("Password"), getName());
+            return new SimpleAuthenticationInfo(user.get(SysUser.UserName), user.get(SysUser.Password), getName());
         } else {
             throw new AuthenticationException("用户名或密码错误");
         }
