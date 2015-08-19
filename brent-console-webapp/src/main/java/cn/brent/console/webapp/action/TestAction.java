@@ -4,7 +4,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.authz.annotation.RequiresUser;
 
-import cn.brent.console.common.BaseController;
+import cn.brent.console.webapp.BaseController;
 import cn.brent.toolbox.web.model.JsonReturn;
 
 public class TestAction extends BaseController{

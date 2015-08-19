@@ -17,8 +17,8 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 
-import cn.brent.console.Constants;
-import cn.brent.console.common.model.BizUser;
+import cn.brent.console.webapp.Constants;
+import cn.brent.console.webapp.common.BizUser;
 import cn.brent.console.webapp.model.SysUser;
 
 public class ShiroDbRealm extends AuthorizingRealm {

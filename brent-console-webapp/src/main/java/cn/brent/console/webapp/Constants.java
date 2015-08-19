@@ -1,4 +1,4 @@
-package cn.brent.console;
+package cn.brent.console.webapp;
 
 public class Constants {
 

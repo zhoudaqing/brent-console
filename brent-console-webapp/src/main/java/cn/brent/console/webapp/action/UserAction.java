@@ -1,11 +1,10 @@
 package cn.brent.console.webapp.action;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
 
-import cn.brent.console.common.BaseController;
-import cn.brent.console.common.BizException;
+import cn.brent.console.webapp.BaseController;
+import cn.brent.console.webapp.BizException;
+import cn.brent.console.webapp.service.SessionService;
 import cn.brent.toolbox.web.model.JsonReturn;
 
 public class UserAction extends BaseController {
@@ -20,7 +19,7 @@ public class UserAction extends BaseController {
 			if (StringUtils.isEmpty(pwd)) {
 				throw new BizException("pwd is null.");
 			}
-			SecurityUtils.getSubject().login(new UsernamePasswordToken(userName, pwd, true));
+			SessionService.login(userName, pwd);
 			renderJson(JsonReturn.ok());
 		} catch (Exception e) {
 			logger.error("",e);
@@ -31,7 +30,7 @@ public class UserAction extends BaseController {
 	
 	public void logout() {
 		try {
-			SecurityUtils.getSubject().logout();
+			SessionService.logout();
 			renderJson(JsonReturn.ok());
 		} catch (Exception e) {
 			logger.error("",e);

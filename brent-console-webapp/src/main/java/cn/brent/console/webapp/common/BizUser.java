@@ -1,4 +1,4 @@
-package cn.brent.console.common.model;
+package cn.brent.console.webapp.common;
 
 import java.io.Serializable;
 

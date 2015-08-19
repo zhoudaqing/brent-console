@@ -40,21 +40,18 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>1.1.1</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- common-logging 实际调用slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- java.util.logging 实际调用slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j.version}</version>
-			<scope>provided</scope>
 		</dependency>
 		<!-- LOGGING end -->
 	</dependencies>
@@ -62,24 +59,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>3.1</version>
-			</dependency>
-			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>5.1.20</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>servlet-api</artifactId>
-				<version>2.5</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
-				<version>2.2</version>
 			</dependency>
 			<dependency>
 				<groupId>cn.brent</groupId>
@@ -90,11 +72,6 @@
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
 				<version>1.0.13</version>
-			</dependency>
-			<dependency>
-				<groupId>com.jfinal</groupId>
-				<artifactId>jfinal</artifactId>
-				<version>1.9</version>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>

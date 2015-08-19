@@ -7,33 +7,13 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>brent-console-common</artifactId>
-	
+
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.jfinal</groupId>
-			<artifactId>jfinal</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jfinal</groupId>
-			<artifactId>jfinal-ext</artifactId>
-			<version>3.1.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-web</artifactId>
-			<version>1.2.3</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>cn.brent</groupId>
-			<artifactId>brent-toolbox</artifactId>
+			<artifactId>brent-jfinal-ext</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+	
 </project>

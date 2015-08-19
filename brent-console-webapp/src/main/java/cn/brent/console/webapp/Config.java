@@ -7,6 +7,7 @@ import cn.brent.console.webapp.model.SysSite;
 import cn.brent.console.webapp.model.SysUser;
 import cn.brent.console.webapp.model.SysUserLog;
 import cn.brent.console.webapp.model.SysUserRole;
+import cn.brent.jfinal.handler.RequestContextHandler;
 import cn.brent.toolbox.web.model.JsonReturn;
 
 import com.jfinal.config.Constants;
@@ -113,6 +114,7 @@ public class Config extends JFinalConfig {
 	 */
 	public void configInterceptor(Interceptors me) {
 		me.add(new ShiroInterceptor());
+		
 	}
 
 	/**
@@ -120,6 +122,7 @@ public class Config extends JFinalConfig {
 	 */
 	public void configHandler(Handlers me) {
 		me.add(new ContextPathHandler("ctx_path"));
+		me.add(new RequestContextHandler());
 	}
 
 }

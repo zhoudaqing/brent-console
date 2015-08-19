@@ -1,4 +1,4 @@
-package cn.brent.console.common;
+package cn.brent.console.webapp;
 
 public class BizException extends RuntimeException {
 
