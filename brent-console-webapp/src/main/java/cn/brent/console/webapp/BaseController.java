@@ -7,6 +7,7 @@ import cn.brent.console.webapp.common.BizUser;
 import cn.brent.console.webapp.service.SessionService;
 
 import com.jfinal.core.Controller;
+import com.jfinal.ext.route.ControllerBind;
 
 public class BaseController extends Controller {
 	

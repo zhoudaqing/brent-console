@@ -3,8 +3,8 @@ package cn.brent.console.webapp.action;
 import org.apache.commons.lang3.StringUtils;
 
 import cn.brent.console.webapp.BaseController;
-import cn.brent.console.webapp.BizException;
 import cn.brent.console.webapp.service.SessionService;
+import cn.brent.toolbox.BizException;
 import cn.brent.toolbox.web.model.JsonReturn;
 
 public class UserAction extends BaseController {

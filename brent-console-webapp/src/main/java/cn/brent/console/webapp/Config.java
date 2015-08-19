@@ -8,6 +8,7 @@ import cn.brent.console.webapp.model.SysUser;
 import cn.brent.console.webapp.model.SysUserLog;
 import cn.brent.console.webapp.model.SysUserRole;
 import cn.brent.jfinal.handler.RequestContextHandler;
+import cn.brent.jfinal.route.AutoBindRoutes;
 import cn.brent.toolbox.web.model.JsonReturn;
 
 import com.jfinal.config.Constants;
@@ -20,7 +21,6 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.plugin.shiro.ShiroInterceptor;
 import com.jfinal.ext.plugin.shiro.ShiroPlugin;
 import com.jfinal.ext.plugin.sqlinxml.SqlInXmlPlugin;
-import com.jfinal.ext.route.AutoBindRoutes;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
@@ -68,7 +68,7 @@ public class Config extends JFinalConfig {
 	 */
 	public void configRoute(Routes me) {
 		routes = me;
-		Routes r=new AutoBindRoutes().suffix("Action");
+		AutoBindRoutes r=new AutoBindRoutes("cn.brent.console.webapp.action").suffix("Action");
 		routes.add(r);
 	}
 
@@ -107,6 +107,7 @@ public class Config extends JFinalConfig {
 		arp.addMapping("sys_role", SysRole.class);
 		arp.addMapping("sys_privilege", SysPrivilege.class);
 		arp.addMapping("sys_message", SysMessage.class);
+		
 	}
 
 	/**
