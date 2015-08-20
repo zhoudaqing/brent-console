@@ -1,6 +1,6 @@
 package cn.brent.console.webapp.priv;
 
-import cn.brent.console.priv.MenuPriv;
+import cn.brent.toolbox.priv.MenuPriv;
 
 public class UserPriv extends MenuPriv{
 

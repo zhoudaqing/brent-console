@@ -6,14 +6,19 @@
 		<artifactId>brent-console</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>brent-console-common</artifactId>
+	<artifactId>brent-console-service</artifactId>
 
 	<dependencies>
-		<dependency>
-			<groupId>cn.brent</groupId>
-			<artifactId>brent-jfinal-ext</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
+	<dependency>
+		<groupId>cn.brent</groupId>
+		<artifactId>brent-bus</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>cn.brent</groupId>
+		<artifactId>brent-console-interface</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</dependency>
 	</dependencies>
-	
 </project>

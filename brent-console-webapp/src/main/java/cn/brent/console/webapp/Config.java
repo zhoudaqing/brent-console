@@ -1,12 +1,5 @@
 package cn.brent.console.webapp;
 
-import cn.brent.console.webapp.model.SysMessage;
-import cn.brent.console.webapp.model.SysPrivilege;
-import cn.brent.console.webapp.model.SysRole;
-import cn.brent.console.webapp.model.SysSite;
-import cn.brent.console.webapp.model.SysUser;
-import cn.brent.console.webapp.model.SysUserLog;
-import cn.brent.console.webapp.model.SysUserRole;
 import cn.brent.jfinal.handler.RequestContextHandler;
 import cn.brent.jfinal.route.AutoBindRoutes;
 import cn.brent.toolbox.web.model.JsonReturn;
@@ -17,11 +10,11 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
-import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.ext.plugin.shiro.ShiroInterceptor;
 import com.jfinal.ext.plugin.shiro.ShiroPlugin;
 import com.jfinal.ext.plugin.sqlinxml.SqlInXmlPlugin;
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
+import com.jfinal.ext.plugin.tablebind.SimpleNameStyles;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.IErrorRenderFactory;
@@ -81,10 +74,9 @@ public class Config extends JFinalConfig {
 				getProperty("user"), getProperty("password").trim());
 		me.add(druid);
 
-		// 配置ActiveRecord插件
-		ActiveRecordPlugin arp = new ActiveRecordPlugin(druid);
-		initTable(arp);
-		me.add(arp);
+		AutoTableBindPlugin atb=new AutoTableBindPlugin(druid,SimpleNameStyles.UP_UNDERLINE);
+		atb.addScanPackages("cn.brent.console.webapp.model");
+		me.add(atb);
 
 		// shiro权限管理
 		ShiroPlugin shiro = new ShiroPlugin(routes);
@@ -99,17 +91,6 @@ public class Config extends JFinalConfig {
 		me.add(ehcahe);
 	}
 
-	private void initTable(ActiveRecordPlugin arp) {
-		arp.addMapping("sys_user", SysUser.class); 
-		arp.addMapping("sys_user_role", SysUserRole.class);
-		arp.addMapping("sys_user_log", SysUserLog.class);
-		arp.addMapping("sys_site", SysSite.class);
-		arp.addMapping("sys_role", SysRole.class);
-		arp.addMapping("sys_privilege", SysPrivilege.class);
-		arp.addMapping("sys_message", SysMessage.class);
-		
-	}
-
 	/**
 	 * 配置全局拦截器
 	 */
@@ -122,7 +103,6 @@ public class Config extends JFinalConfig {
 	 * 配置处理器
 	 */
 	public void configHandler(Handlers me) {
-		me.add(new ContextPathHandler("ctx_path"));
 		me.add(new RequestContextHandler());
 	}
 
