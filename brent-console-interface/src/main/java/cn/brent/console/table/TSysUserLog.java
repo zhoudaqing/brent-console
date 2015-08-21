@@ -1,7 +1,6 @@
 
-package cn.brent.console.webapp.model;
+package cn.brent.console.table;
 
-import com.jfinal.plugin.activerecord.Model;
 
 /**
  * <p>实体类- </p>
@@ -9,9 +8,7 @@ import com.jfinal.plugin.activerecord.Model;
  *
  * @since 2015-08-18 05:00:36
  */
-public class SysUserLog extends Model<SysUserLog>{
-
-	public static final SysUserLog me = new SysUserLog();
+public class TSysUserLog {
 
     /**  */
     public static final String LogID = "LogID";

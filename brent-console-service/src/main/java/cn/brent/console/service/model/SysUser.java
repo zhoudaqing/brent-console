@@ -1,4 +1,4 @@
-package cn.brent.console.webapp.model;
+package cn.brent.console.service.model;
 
 import com.jfinal.plugin.activerecord.Model;
 

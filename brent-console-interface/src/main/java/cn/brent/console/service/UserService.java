@@ -1,4 +1,4 @@
-package cn.brent.console;
+package cn.brent.console.service;
 
 public interface UserService {
 	
@@ -8,7 +8,7 @@ public interface UserService {
 	
 	public static final String TOPIC_DEL="del";
 	
-	public void login(String userName, String pwd);
+	public boolean login(String userName, String pwd);
 
 	public void logout();
 

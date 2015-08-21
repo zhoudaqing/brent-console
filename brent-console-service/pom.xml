@@ -10,15 +10,29 @@
 
 	<dependencies>
 
-	<dependency>
-		<groupId>cn.brent</groupId>
-		<artifactId>brent-bus</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
-	<dependency>
-		<groupId>cn.brent</groupId>
-		<artifactId>brent-console-interface</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
+		<dependency>
+			<groupId>cn.brent</groupId>
+			<artifactId>brent-bus</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.brent</groupId>
+			<artifactId>brent-console-interface</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.brent</groupId>
+			<artifactId>brent-jfinal-ext</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+		</dependency>
 	</dependencies>
 </project>

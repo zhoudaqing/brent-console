@@ -1,4 +1,4 @@
-package cn.brent.console;
+package cn.brent.console.service;
 
 import org.zeromq.ZMQ;
 
@@ -6,7 +6,11 @@ import cn.brent.bus.BusStarter;
 import cn.brent.bus.rpc.RpcWorkHandler;
 import cn.brent.bus.util.Prop;
 import cn.brent.bus.worker.WorkerContext;
-import cn.brent.console.serivce.UserServiceImpl;
+import cn.brent.console.service.imp.UserServiceImpl;
+
+import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
+import com.jfinal.ext.plugin.tablebind.SimpleNameStyles;
+import com.jfinal.plugin.druid.DruidPlugin;
 
 public class StartService {
 
@@ -33,10 +37,25 @@ public class StartService {
 		String registerToken = pro.get("registerToken");
 
 		String[] brokers = broker.split(",");
+		
+		init();
 
 		WorkerContext wc = new WorkerContext(ZMQ.context(ioThreads), brokers, registerToken);
 
 		register(wc);
+	}
+	
+	public static void init(){
+		Prop pro = new Prop("config.properties");
+		
+		DruidPlugin druid = new DruidPlugin(pro.get("jdbcUrl"),pro.get("user"), pro.get("password").trim());
+		
+		druid.start();
+
+		AutoTableBindPlugin atb=new AutoTableBindPlugin(druid,SimpleNameStyles.UP_UNDERLINE);
+		atb.addScanPackages("cn.brent.console.service.model");
+		
+		atb.start();
 	}
 
 	protected static void register(WorkerContext wc) {

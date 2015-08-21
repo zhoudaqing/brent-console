@@ -17,6 +17,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 
+import cn.brent.console.table.TSysUser;
 import cn.brent.console.webapp.Constants;
 import cn.brent.console.webapp.ServiceHolder;
 import cn.brent.console.webapp.common.BizUser;
@@ -32,14 +33,14 @@ public class ShiroDbRealm extends AuthorizingRealm {
         SysUser user=null;
 		try {
 			ServiceHolder.userService.login(token.getUsername(), new String(token.getPassword()));
-			user = SysUser.me.findFirst("select * from sys_user where UserName=? and Password=?", token.getUsername(),new String(token.getPassword()));
+			user = SysUser.dao.findFirst("select * from sys_user where UserName=? and Password=?", token.getUsername(),new String(token.getPassword()));
 		} catch (Exception e) {
 			throw new AuthenticationException(e.getMessage());
 		}
         if (user != null) {
         	reflashBizUser(user);
         	
-            return new SimpleAuthenticationInfo(user.get(SysUser.UserName), user.get(SysUser.Password), getName());
+            return new SimpleAuthenticationInfo(user.get(TSysUser.UserName), user.get(TSysUser.Password), getName());
         } else {
             throw new AuthenticationException("用户名或密码错误");
         }
@@ -50,7 +51,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
      */
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String loginName = (String) principals.fromRealm(getName()).iterator().next();
-        SysUser user = SysUser.me.findFirst("select * from sys_user where UserName=?", loginName);
+        SysUser user = SysUser.dao.findFirst("select * from sys_user where UserName=?", loginName);
         if (user != null) {
         	reflashBizUser(user);
         	
@@ -84,7 +85,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
     protected void reflashBizUser(SysUser user){
     	Session session = SecurityUtils.getSubject().getSession();
     	BizUser un=new BizUser();
-    	un.setUser_name(user.getStr(SysUser.UserName));
+    	un.setUser_name(user.getStr(TSysUser.UserName));
     	session.setAttribute(Constants.USER_SESSION, un);
     }
  

@@ -2,7 +2,7 @@ package cn.brent.console.webapp;
 
 import cn.brent.bus.rpc.RpcFactory;
 import cn.brent.bus.rpc.SubsService;
-import cn.brent.console.UserService;
+import cn.brent.console.service.UserService;
 
 import com.jfinal.kit.Prop;
 
