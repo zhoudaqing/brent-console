@@ -18,6 +18,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 
 import cn.brent.console.webapp.Constants;
+import cn.brent.console.webapp.ServiceHolder;
 import cn.brent.console.webapp.common.BizUser;
 import cn.brent.console.webapp.model.SysUser;
 
@@ -30,6 +31,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         SysUser user=null;
 		try {
+			ServiceHolder.userService.login(token.getUsername(), new String(token.getPassword()));
 			user = SysUser.me.findFirst("select * from sys_user where UserName=? and Password=?", token.getUsername(),new String(token.getPassword()));
 		} catch (Exception e) {
 			throw new AuthenticationException(e.getMessage());

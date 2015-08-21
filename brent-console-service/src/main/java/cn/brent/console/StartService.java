@@ -32,8 +32,8 @@ public class StartService {
 	}
 	
 	protected static void register(WorkerContext wc){
-		RpcWorkHandler rpc=new RpcWorkHandler("console/user");
-		rpc.addModule(new UserServiceImpl());
+		RpcWorkHandler rpc=new RpcWorkHandler(UserService.NAME);
+		rpc.addVersion(new UserServiceImpl());
 		wc.registerWorker(rpc,1);
 	}
 
