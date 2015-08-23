@@ -44,5 +44,8 @@ public class TSysMenu{
 
     /**  */
     public static final String ModifyUser = "ModifyUser";
+    
+    /** 站点代码 */
+    public static final String Site_Code = "Site_Code";
 
 }

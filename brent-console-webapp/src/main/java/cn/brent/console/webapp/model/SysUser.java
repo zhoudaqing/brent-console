@@ -1,8 +1,8 @@
 package cn.brent.console.webapp.model;
 
-import com.jfinal.plugin.activerecord.Model;
+import cn.brent.jfinal.model.TModel;
 
-public class SysUser extends Model<SysUser>{
+public class SysUser extends TModel<SysUser>{
 
 	/** */
 	private static final long serialVersionUID = 1L;

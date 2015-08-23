@@ -8,4 +8,11 @@
 	</parent>
 	<artifactId>brent-console-interface</artifactId>
 
+	<dependencies>
+		<dependency>
+			<groupId>cn.brent</groupId>
+			<artifactId>brent-jfinal-ext</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

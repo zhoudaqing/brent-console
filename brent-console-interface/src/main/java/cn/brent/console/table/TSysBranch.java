@@ -31,10 +31,7 @@ public class TSysBranch {
 	public static final String Name = "Name";
 
 	/**  */
-	public static final String TreeLevel = "TreeLevel";
-
-	/**  */
-	public static final String IsLeaf = "IsLeaf";
+	public static final String Mapping = "Mapping";
 
 	/**  */
 	public static final String Phone = "Phone";

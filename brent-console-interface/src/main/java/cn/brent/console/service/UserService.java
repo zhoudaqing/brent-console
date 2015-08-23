@@ -1,5 +1,7 @@
 package cn.brent.console.service;
 
+import cn.brent.console.Data;
+
 public interface UserService {
 	
 	public static final String NAME="console/user";
@@ -8,7 +10,7 @@ public interface UserService {
 	
 	public static final String TOPIC_DEL="del";
 	
-	public boolean login(String userName, String pwd);
+	public Data login(String userName, String pwd);
 
 	public void logout();
 

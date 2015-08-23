@@ -14,7 +14,7 @@ package cn.brent.console.table;
 public class TSysSite {
 
 	/**  */
-	public static final String ID = "ID";
+	public static final String Code = "Code";
 
 	/**  */
 	public static final String Name = "Name";
@@ -23,7 +23,7 @@ public class TSysSite {
 	public static final String Info = "Info";
 
 	/**  */
-	public static final String BranchInnerCode = "BranchInnerCode";
+	public static final String InnerCode = "InnerCode";
 
 	/**  */
 	public static final String URL = "URL";

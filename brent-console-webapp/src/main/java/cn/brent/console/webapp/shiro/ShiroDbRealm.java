@@ -2,6 +2,7 @@ package cn.brent.console.webapp.shiro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -32,18 +33,14 @@ public class ShiroDbRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         SysUser user=null;
 		try {
-			ServiceHolder.userService.login(token.getUsername(), new String(token.getPassword()));
-			user = SysUser.dao.findFirst("select * from sys_user where UserName=? and Password=?", token.getUsername(),new String(token.getPassword()));
+			Map<String,Object> m=ServiceHolder.userService.login(token.getUsername(), new String(token.getPassword()));
+			user = new SysUser();
+			user.setAttrs(m);
 		} catch (Exception e) {
 			throw new AuthenticationException(e.getMessage());
 		}
-        if (user != null) {
-        	reflashBizUser(user);
-        	
-            return new SimpleAuthenticationInfo(user.get(TSysUser.UserName), user.get(TSysUser.Password), getName());
-        } else {
-            throw new AuthenticationException("用户名或密码错误");
-        }
+    	reflashBizUser(user);
+        return new SimpleAuthenticationInfo(user.get(TSysUser.UserName), user.get(TSysUser.Password), getName());
     }
  
     /**
