@@ -1,0 +1,18 @@
+<% include footer-common.html %>
+<script type="text/javascript">
+    $(function(){
+        var cbtTimer;
+        $(".sh-navs-wrap li").eq(2).hover(function(){
+            if(cbtTimer) {
+                clearTimeout(cbtTimer);
+            }
+            $(".sh-sub-nav-wrap","#site-header").show();
+        }, function(){
+            cbtTimer = setTimeout(function(){
+                $(".sh-sub-nav-wrap","#site-header").hide();
+            }, 200)
+        });
+    });
+</script>
+</body>
+</html>

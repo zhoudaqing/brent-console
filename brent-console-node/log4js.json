@@ -1,0 +1,18 @@
+{
+  "appenders": [
+    {
+      "type": "dateFile",
+      "filename": "logs/node-access.log",
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "category": "access"
+    },
+    {
+      "type": "dateFile",
+      "filename": "logs/http-router.log",
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "category": "router"
+    }
+  ]
+}

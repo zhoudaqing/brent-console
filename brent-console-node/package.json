@@ -1,0 +1,21 @@
+{
+  "name": "brent-console",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "pm2 start app.js --name brent-console -i max -e logs/err.log -o logs/out.log",
+    "stop": "pm2 stop all",
+    "restart": "pm2 reload all"
+  },
+  "dependencies": {
+    "express": "~4.0.0",
+    "static-favicon": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "eventproxy": "*",
+    "request": "*",
+    "winston": "~0.7.3"
+  }
+}

@@ -1,0 +1,10 @@
+<%-g_loader.loadResource('/public/css/lib/QH-all.css','css',request)%>
+<%
+if(typeof g_css !== 'undefined'){
+    for(var i=0;i<g_css.length;i++){
+%>
+<%-g_loader.loadResource('/public/css' + g_css[i],'css',request)%>
+<%
+    }
+}
+%>

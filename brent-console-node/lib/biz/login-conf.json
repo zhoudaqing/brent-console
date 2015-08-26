@@ -1,0 +1,10 @@
+[
+  {
+    "match" : "^/service/user-center/.*",
+    "loginUrl" : "/common/user/login?type=service"
+  },
+  {
+    "match" : "^/venture/user-center/.*",
+    "loginUrl" : "/common/user/login"
+  }
+]

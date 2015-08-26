@@ -1,0 +1,78 @@
+<%
+   // 判断js是否已经加载过，因为有些页面可能自己include了js.html
+   if(typeof locals['_hasLoaded'] !== 'undefined'){
+        return '';
+   }
+%>
+<script type="text/javascript">
+    var g_context = {
+        context : "<%= g_context.context%>",
+        sns_home : "<%= g_context.sns_home%>",
+        base_url : "<%= g_context.base_url%>",
+        <% if(g_config.debug){%>
+        login_action : '/node/user/login_proxy',
+        <%}%>
+        account_url : '<%= g_context.account_url%>'
+        };
+    var g_center = {
+        isMain : <%=g_center.isMain?'true':'false'%>,
+        key : '<%=g_center.key%>'
+    };
+    <% if(g_user == null){ %>
+    var	g_user=null;
+    <% }else{ %>
+    var	g_user = {
+        user_id : <%=g_user.user_id%>,
+        name : "<%=g_user.name%>",
+        login_name : "<%=g_user.login_name%>",
+        email : "<%=g_user.email%>",
+        image : "<%=g_user.image%>",
+        user_type : <%=g_user.user_type%>
+    };
+    <%}%>
+    <%
+        // 服务器请求的数据，共享给客户端
+        for(var k in g_shareObjs) {
+    %>
+        var <%=k%> = <%-JSON.stringify(g_shareObjs[k])%>;
+    <%
+        }
+    %>
+    var params = <%-JSON.stringify(params)%>;
+    var g_config = {
+        "serverContext" : '<%=g_config.serverContext%>'
+    }
+</script>
+
+<%-g_loader.loadResource('/public/js/lib/thrid-party-all.js','js',request)%>
+<%-g_loader.loadResource('/public/js/lib/QH-all.js','js',request)%>
+<%
+if(typeof g_js !== 'undefined'){
+    for(var i=0;i<g_js.length;i++){
+%>
+<%-g_loader.loadResource('/public/js'+g_js[i],'js',request)%>
+<%
+    }
+}
+locals._hasLoaded = true;
+%>
+<% if(params.cktg) { %>
+<!-- 推广码 -->
+<script>
+    $(function() {
+        var cktg = params.cktg ? params.cktg : '';
+        $.cookie('cktg', params.cktg, {expires: 30});
+        typeof localStorage != 'undefined' && localStorage.setItem("cktg", params.cktg)
+    })
+</script>
+<% } %>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cd39bcbb5863921f58b67c54fda6a1e4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>

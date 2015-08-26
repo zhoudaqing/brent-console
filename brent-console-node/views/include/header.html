@@ -1,0 +1,60 @@
+<% include header-common.html %>
+</head>
+<body>
+<div id="site-header">
+    <div class="site-header-in  clearfix">
+        <div class="container">
+            <a class="sh-logo fl" href="/"><img width="340" height="54" src="/public/image/base/logo.png"></a>
+            <% if(g_user){%>
+            <div id="login-info" class="sh-login-wrap fr">
+                <a class="login_account" href="/account">
+                    欢迎，<%=g_user.name?g_user.name:g_user.login_name%>
+                    <span class="li-icon li-icon-arrow"></span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="/account"><span class="li-icon li-icon-user"></span>个人中心</a>
+                    </li>
+                    <li>
+                        <a href="/common/user/logout"><span class="li-icon li-icon-exit"></span>退出</a>
+                    </li>
+                </ul>
+            </div>
+            <%}else{%>
+            <div class="sh-login-wrap fr">
+
+                <a href="/common/user/login">登录</a>
+                <span>|</span>
+                <a href="/venture/user/reg">注册</a>
+            </div>
+            <%}%>
+            <%
+            var g_realNavType = (typeof g_navType === 'undefined' ? 'none' : g_navType);
+            %>
+            <div class="sh-navs-wrap fr clearfix">
+                <ul>
+                    <li class="<%=g_realNavType == 'create-wisdom' ? 'cur' : ''%>"><a class="par-a" href="/common/create-wisdom/">创业智慧</a></li>
+                    <li class="<%=g_realNavType == 'create-base' ? 'cur' : '' %>"><a class="par-a" href="/common/create-base/index">创客基地</a></li>
+                    <li class="<%=g_realNavType == 'create-service' ? 'cur' : '' %>">
+                        <a class="par-a" href="#">创业服务</a>
+                        <div class="sh-sub-nav-wrap" style="display:none;">
+                                <div class="container">
+                                    <ul class="clearfix">
+                                        <li><a href="/common/create-service/YXGS">1元公司注册</a></li>
+                                        <li><a href="/common/create-service/PXYXXG">创业省心套餐</a></li>
+                                        <li><a href="/common/create-service/XGM">代理记账</a></li>
+                                        <li><a href="/common/create-service/QHYX">前海公司注册</a></li>
+                                        <li><a href="/common/create-service/PXQHYX">前海创业套餐</a></li>
+                                        <li><a href="/common/create-service/YBNSR">前海代理记账</a></li>
+                                    </ul>
+                                </div>
+                        </div>
+                    </li>
+                    <li class="<%=g_realNavType=='index'?'cur':''%>"><a class="par-a" href="/">首页</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+   
