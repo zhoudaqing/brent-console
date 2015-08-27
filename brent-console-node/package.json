@@ -16,6 +16,7 @@
     "ejs": "~0.8.5",
     "eventproxy": "*",
     "request": "*",
+    "log4js": "*",
     "winston": "~0.7.3"
   }
 }

@@ -6,6 +6,7 @@ module.exports = {
     replaceCookie : true,
     serverContext : '/console',
     evn : "net",
+    logPath : "logs",
     domain : _domain,
     httpClientConfigs :  {
         appName : 'brent-console',
