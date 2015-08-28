@@ -1,6 +1,4 @@
 /**
- * Created by xiongxing on 2014/5/19.
- *
  * 在各个请求中进行传递的上下文参数
  */
 var path = require('path'),
@@ -15,7 +13,7 @@ var context = function(req,res,view){
     this.res = res;                 // 响应
     this.data = {};                 // 数据
     this.view = view || '';         // 模板页面
-    // 当前请求中所有后端代理接口，只要1个借口出错，就直接跳转到显示错误页面
+    // 当前请求中所有后端代理接口，只要1个接口出错，就直接跳转到显示错误页面
     // 设为false的时候，不跳转到错误页面，直接返回错误数据，需要前端页面自己处理错误数据
     // 主要用于一些重要页面不依赖后台的某些接口，当某些接口出错后，页面可以显示部分数据，比如首页
     this.proxyErrorBreak = true;
@@ -39,9 +37,6 @@ var context = function(req,res,view){
      * 出错了，直接打印错误信息
       */
     this.renderError = function(errMsg,data){
-//        if(typeof errMsg === 'object'){
-//            errMsg = JSON.stringify(errMsg);
-//        }
         data.code = 500;
         data.message = errMsg;
         this.res.status(500)

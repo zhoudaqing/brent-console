@@ -1,5 +1,4 @@
 /**
- * Created by xiongxing on 2014/6/20.
  * 页面预处理
  *  * var g_binderPreAjax = {
  *    info :{

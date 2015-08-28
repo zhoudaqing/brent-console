@@ -1,5 +1,4 @@
 /**
- * Created by xiongxing on 2014/9/23.
  * http代理，结合http-router路由信息，主要也可以用于统计接口调用成功，失败情况
  */
 var _request = require('request'),

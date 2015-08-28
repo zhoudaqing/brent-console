@@ -59,7 +59,6 @@ module.exports = {
             method: 'post',
             headers: {
                 'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-                //'Cookie': config.replaceCookie ? clientCookie.replace(domainReg, config.proxyDomain) : clientCookie
                 'Cookie' : clientCookie
             },
             timeout : 10000,
@@ -82,7 +81,6 @@ module.exports = {
                     for (var i = 0; i < response.headers['set-cookie'].length; i++) {
                         var cookieValue = response.headers['set-cookie'][i].replace(proxPathReg,'Path=/');
                         cookies.push(config.replaceCookie ? cookieValue.replace(proxDomainReg, 'Domain=' + req.host) : cookieValue);
-                        //res._headers['set-cookie'].push(cookieValue.replace(proxDomainReg,config.domain));
                     }
 
                     res.set('set-cookie', cookies);
