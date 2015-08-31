@@ -6,13 +6,13 @@ module.exports = {
     replaceCookie : true,
     serverContext : '/console',
     evn : "net",
-    logPath : "logs",
+    routerPath : "router/",
     domain : _domain,
     httpClientConfigs :  {
         appName : 'brent-console',
         route: [
             //{host: '10.60.60.49', port: 8080, live: true},
-            {host: '127.0.0.1', port: 8080, live: true}
+            {host: '127.0.0.1', port: 8083, live: true}
         ]
     },
     context :"",

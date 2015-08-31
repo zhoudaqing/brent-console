@@ -8,7 +8,7 @@
     var g_realNavType = (typeof g_navType === 'undefined' ? 'none' : g_navType);
     %>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" type="image/x-icon" href="/public/image/share/fav/favicon<%=g_center.key%>.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/public/image/share/fav/favicon.ico">
     <title>
         <%if (typeof(g_pure_title)!="undefined"){
         %>
@@ -18,7 +18,7 @@
             %>
             <%= (g_title+' - ')%>
             <%}%>
-            梧桐创客
+            <%=g_config.title%>
             <%
         }%>
     </title>

@@ -6,7 +6,7 @@ var path = require('path'),
 
 var viewRootPath = path.join(__dirname, '../../views');
 var exists = fs.existsSync || path.existsSync;
-var qhClient = require('../../lib/biz/qhee-client.js');
+var proxyClient = require('../biz/proxy-client.js');
 
 var context = function(req,res,view){
     this.req = req;                 // 请求
@@ -90,7 +90,7 @@ var context = function(req,res,view){
             _options.code = 404;
             res.render('500.html',_options);
         }
-        // 前海页面的现实
+        //
         var _renderNormal = function(){
             if(exists(realPath)) {
 
@@ -107,7 +107,7 @@ var context = function(req,res,view){
      * 代理AJAX请求，不需要用户再传res,res了
      */
     this.post = function(url,params,fn){
-        qhClient.post(url,params,function(data){
+        proxyClient.post(url,params,function(data){
             if(fn){
                 fn(data);
             }else {

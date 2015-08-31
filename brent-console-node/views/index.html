@@ -4,12 +4,17 @@
 	var g_js=['/thrid-party/jquery.flexslider-min.js'];
 	var g_navType = 'index';
 	var g_binderPreData = {
-
+		xx:{
+			url:'/test/test1'
+		}
     }
 %>
+<% include /include/header.html %>
 <div id="main_content">
-	index
+	index <%=xx %>
 </div>
+<% include /include/js.html %>
 <script type="text/javascript">
 
 </script>
+<% include /include/footer.html %>

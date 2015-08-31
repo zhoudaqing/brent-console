@@ -6,7 +6,6 @@ var _request = require('request'),
     httpRouter = require('./http-router');
 
 var logger = log4js.getLogger('router');
-logger.setLevel('INFO');
 
 module.exports ={
     /**

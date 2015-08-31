@@ -9,10 +9,27 @@
     },
     {
       "type": "dateFile",
+      "filename": "logs/node-error.log",
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "category": "error"
+    },
+    {
+      "type": "dateFile",
+      "filename": "logs/node-client.log",
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "category": "client"
+    },
+    {
+      "type": "dateFile",
       "filename": "logs/http-router.log",
       "pattern": "-yyyy-MM-dd",
       "alwaysIncludePattern": true,
       "category": "router"
     }
-  ]
+  ],
+  "levels": {
+    "all": "INFO"
+  }
 }

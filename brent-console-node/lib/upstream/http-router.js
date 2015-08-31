@@ -1,33 +1,18 @@
-/**
- * Created by xiongxing on 2014/9/23.
- */
 
 var config = require('../../app-config'),
     fileUtils = require('../utils/file-utils'),
-    winston = require('winston'),
+    log4js = require('log4js'),
     fs = require('fs'),
     os = require('os');
 
 var isWin = (os.platform().indexOf('win') != -1);
 
-var logPath = '/apps/qhee/logs/';
-fileUtils.mkPath(logPath);
-
-var log = new (winston.Logger)({
-    transports: [
-        new (winston.transports.File)({
-            level : 'info',
-            json : false,
-            maxsize : 1024 * 1024 * 10,     // 文件大小10M
-            filename: logPath + '/router.log'
-        })
-    ]
-});
+var logger = log4js.getLogger('router');
 
 var C_FAIL_RATE = 0.75;      // 默认错误超过75%认为后台server死掉了
 var C_CONTINUE_WATCH_COUNT = 20;    // 连续调用观察到次数
 // 最新的路由信息放置的目录
-var routerPath = '/apps/qhee/router/';
+var routerPath = config.routerPath;
 var routerFile = routerPath + config.httpClientConfigs.appName + '.json';
 /***********路由对象 begin*************/
 function RouterData(config){
@@ -123,7 +108,7 @@ function loadRouterConfig(){
         defaultRouter = config.httpClientConfigs.route;
     }
 
-    log.info(process.pid + ' reload router config:',defaultRouter);
+    logger.info(process.pid + ' load router config:',defaultRouter);
     //console.log(process.pid + ' reload router config:',defaultRouter);
 
     var routerDatas = [];
@@ -194,10 +179,9 @@ function getNextLiveRouter(request){
 /**
  * 监听SIGUSR1消息来实现路由，
  * 因为生产环境会启多个进程，要通知多个进程去更新路由，
- * 目前没想到比SIGUSR1的方法
  */
 process.on('SIGUSR1', function() {
-    log.info('reci SIGUSR1');
+    logger.info('reci SIGUSR1');
     // 重新加载路由
     loadRouterConfig();
 });

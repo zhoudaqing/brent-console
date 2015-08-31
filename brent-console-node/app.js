@@ -3,8 +3,6 @@ var express = require('express'),
     favicon = require('static-favicon'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
-    routes = require('./lib/routes/auto-router'),
-    log = require('./lib/utils/log-utils.js'),
     debug = require('debug')('my-application'),
     http = require('http'),
     cluster = require('cluster'),
@@ -32,9 +30,6 @@ app.set('views', path.join(__dirname, 'views'));
 if(!config.debug){
     app.enable('view cache');
 }
-// maxAge ms
-//app.use(favicon(__dirname + '/public/image/common/fav.ico',{maxAge:31536000000}));
-//app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
@@ -49,8 +44,8 @@ app.use(log4js.connectLogger(logger, {level:log4js.levels.INFO}));
 
 
 app.use('/', require('./lib/upstream/watch-listen'));
-// app.use('/', require('./lib/mobile/mobile-router'));
-app.use('/', routes);
+app.use('/', require('./lib/routes/proxy-router.js'));
+app.use('/', require('./lib/routes/auto-router'));
 
 app.locals.g_config = config;
 app.locals.g_loader = require('./lib/server-widget/loader.js');
@@ -74,7 +69,8 @@ var server = app.listen(app.get('port'), function() {
 process.on('uncaughtException', function(err) {
 
     try {
-        log.error(process.pid,err);
+        var logger = log4js.getLogger('error');
+        logger.error(process.pid,err);
         console.log(err);
     } catch (e) {
         console.log('error when exit', e.stack);

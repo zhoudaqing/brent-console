@@ -125,23 +125,6 @@ var renderError = function (ctx, msg, body) {
         stack: _stack
     });
 }
-//获取字典数据
-function getOptionData(req, res, key, option, callback) {
-    var url = option.url;
-    qhClient.post(url, null, function (data) {
-        var retData = data.data;
-        if (option.wrap) {
-            // 需要对数据进行包装
-            retData = option.wrap(retData);
-        }
-        // 有些key包含字符. 全部替换成_
-        var realKey = key.replace(/\./ig, '_');
-        var jsonTmp = {};
-        jsonTmp[realKey] = retData;
-        callback(jsonTmp);
-
-    }, new context(req, res));
-}
 
 /**
  * 默认的路由，不处理后端代码，直接render某个html
