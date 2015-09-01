@@ -2,9 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <%
-    // 静态资源处理
-    //g_css = (typeof g_css === 'undefined')?[]:g_css;
-    //g_js = (typeof g_js === 'undefined')?[]:g_js;
     var g_realNavType = (typeof g_navType === 'undefined' ? 'none' : g_navType);
     %>
     <meta charset="UTF-8" />
@@ -19,23 +16,10 @@
             <%= (g_title+' - ')%>
             <%}%>
             <%=g_config.title%>
+            <%=g_realNavType%>
             <%
         }%>
     </title>
     <%if(typeof g_keywords!=='undefined'){%><meta name="keywords" content="<%=g_keywords%>" /><%}%>
     <%if(typeof g_description!=='undefined'){ %><meta name="description" content="<%=g_description%>" /><%}%>
     <% include css.html %>
-    <%
-        // 判断是否需要加载excanvas，excanvas只能放在header部分，不然不起效
-        // 并且只有在IE7,IE8下面才需要这个
-        if(typeof g_js !== 'undefined'){
-            var includeJs = ['rotate-photo.js'].join(',');
-            for(var i = 0; i < g_js.length; i++) {
-                if(includeJs.indexOf(g_js[i].substring(g_js[i].lastIndexOf('/') + 1)) != -1){
-    %>
-    <!--[if lte IE 8]><script type="text/javascript" src="/public/js/thrid-party/excanvas.min.js"></script><![endif]-->
-    <%
-                }
-            }
-        }
-    %>
