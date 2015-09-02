@@ -7,14 +7,18 @@ import cn.brent.console.webapp.common.BizUser;
 import cn.brent.console.webapp.service.SessionService;
 
 import com.jfinal.core.Controller;
-import com.jfinal.ext.route.ControllerBind;
 
 public class BaseController extends Controller {
 	
 	protected Logger logger=LoggerFactory.getLogger(getClass());
 	
 	protected BizUser getUser(){
-		BizUser user=SessionService.get(Constants.USER_SESSION);
+		BizUser user=(BizUser)getSessionAttr(Constants.USER_SESSION);
+		if(user!=null){
+			return user;
+		}
+		user=SessionService.get(Constants.USER_SESSION);
+		setSessionAttr(Constants.USER_SESSION, user);
 		return user;
 	}
 }

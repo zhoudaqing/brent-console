@@ -1,6 +1,7 @@
 package cn.brent.console.webapp.action;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresUser;
 
 import cn.brent.console.webapp.BaseController;
 import cn.brent.console.webapp.service.SessionService;
@@ -39,6 +40,9 @@ public class UserAction extends BaseController {
 		}
 	}
 	
-	
+	@RequiresUser
+	public void getUserMenu(){
+		
+	}
 
 }

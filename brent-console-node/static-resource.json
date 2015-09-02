@@ -26,7 +26,16 @@
         "/public/js/lib/QH-all.js": {
             "compress": true,
             "list": [
-
+                "/public/js/core/Q.js",
+                "/public/js/core/notify.js",
+                "/public/js/core/biz/ajax.js",
+                "/public/js/core/util/url.js",
+                "/public/js/core/widget/hash-change.js",
+                "/public/js/core/widget/tips.js",
+                "/public/js/core/widget/validator.js",
+                "/public/js/core/binder/form-submit.js",
+                "/public/js/core/binder/list.js",
+                "/public/js/core/binder/search-list.js"
             ]
         },
         "/public/css/lib/QH-all.css":{
